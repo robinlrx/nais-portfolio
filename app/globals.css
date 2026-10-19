@@ -10,5 +10,6 @@
 	--ink: #1A1A1A;
 	--grey: #E6E6EA;
 
-	--font-sans: var(--font-outfit), system-ui, sans-serif;
+	--font-open-sans: var(--font-open-sans);
+	--font-hago: var(--font-hago-local);
 }
