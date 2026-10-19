@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@theme {
+	--yellow: #FFB81C;
+	--blue: #2B3BF0;
+	--pink: #F7A8D8;
+	--green: #35C48D;
+	--orange: #F7821B;
+	--violet: #E9DAF6;
+	--ink: #1A1A1A;
+	--grey: #E6E6EA;
+
+	--font-sans: var(--font-outfit), system-ui, sans-serif;
+}

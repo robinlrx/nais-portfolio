@@ -17,6 +17,7 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "sanity": "^5.31.2",
+    "sanity-plugin-media": "^6.4.0",
     "styled-components": "^6.6.0"
   },
   "devDependencies": {

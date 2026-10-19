@@ -30,9 +30,15 @@ export const projectType = defineType({
 		// 	validation: (rule) => rule.required(),
 		// }),
 		defineField({
-			title: 'Image',
-			name: 'image',
-			type: 'image',
+			title: 'Paragraphe',
+			name: 'paragraph',
+			type: 'string',
+			validation: (rule) => rule.required(),
+		}),
+		defineField({
+			title: 'Sous paragraphe',
+			name: 'subparagraph',
+			type: 'string',
 		}),
 		defineField({
 			title: 'URL vidéo',
@@ -78,6 +84,19 @@ export const projectType = defineType({
 			name: 'body',
 			type: 'array',
 			of: [{type: 'block'}],
+		}),
+		defineField({
+			name: 'gallery',
+			title: "Galerie d'images",
+			type: 'array',
+			of: [
+				defineArrayMember({
+				type: 'image',
+				options: {
+					hotspot: true,
+				},
+				}),
+			],
 		}),
 	],
 })

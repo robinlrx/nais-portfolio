@@ -13,6 +13,9 @@ import {apiVersion, dataset, projectId} from './sanity/env'
 import {schema} from './sanity/schemaTypes'
 import {structure} from './sanity/structure'
 
+// libs
+import {media} from 'sanity-plugin-media'
+
 export default defineConfig({
   basePath: '/admin',
   projectId,
@@ -24,5 +27,6 @@ export default defineConfig({
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
+	media(),
   ],
 })
