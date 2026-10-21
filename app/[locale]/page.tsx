@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { type SanityDocument } from "next-sanity";
 import { client } from "@/sanity/client";
 import Navbar from "@/app/components/Navbar";
+import LanguageSwitcher from "@/app/components/LanguageSwitcher";
 
 type Props = {
 	params: Promise<{ locale: string }>;

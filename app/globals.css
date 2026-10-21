@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-	--yellow: #FFB81C;
-	--blue: #2B3BF0;
-	--pink: #F7A8D8;
-	--green: #35C48D;
-	--orange: #F7821B;
+	--color-yellow: #FFB81C;
+	--color-blue: #2B3BF0;
+	--color-pink: #F7A8D8;
+	--color-green: #35C48D;
+	--color-orange: #F7821B;
 	--violet: #E9DAF6;
-	--ink: #1A1A1A;
-	--grey: #E6E6EA;
+	--color-ink: #1A1A1A;
+	--color-grey: #E6E6EA;
 
 	--font-open-sans: var(--font-open-sans);
 	--font-hago: var(--font-hago-local);
