@@ -6,23 +6,14 @@ import Link from "next/link";
 import { client } from "@/sanity/client";
 import Skeleton from "@/app/components/Skeleton";
 import { urlFor } from '@/lib/imageUrl';
-import { getTranslatedSlug } from "@/lib/getTranslatedSlug";
 import { Image } from "next-sanity/image";
 import Navbar from "@/app/components/Navbar";
 
 const PROJECT_QUERY = `*[
   _type == "project" &&
-  language == $locale &&
   slug.current == $slug
 ][0] {
-  ...,
-  "translations": *[
-    _type == "translation.metadata" &&
-    references(^._id)
-  ][0].translations[].value-> {
-    language,
-    "slug": slug.current
-  }
+  ...
 }`;
 
 const options = { next: { revalidate: 30 } };
@@ -57,14 +48,9 @@ async function ProjectContent({ params }: PageProps) {
 	}
 
 	const otherLocale = locale === "fr" ? "en" : "fr";
-
-	const translatedSlug = await getTranslatedSlug({
-		slug,
-		locale,
-		type: "project",
-	});
-
-	const switchPathOverride = translatedSlug ? `/${otherLocale}/projects/${translatedSlug}` : `/${otherLocale}`;
+	const switchPathOverride = `/${otherLocale}/projects/${slug}`;
+	const localizedTitle = project.title?.[locale] ?? project.title?.[otherLocale];
+	const localizedBody = project.body?.[locale] ?? project.body?.[otherLocale];
 
 	const galleryImages = Array.isArray(project.gallery) ? project.gallery : [];
 
@@ -76,11 +62,11 @@ async function ProjectContent({ params }: PageProps) {
 					{locale === "fr" ? "← Retour aux projets" : "← Back to projects"}
 				</Link>
 
-				<h1 className="text-4xl font-bold mb-8">{project.title}</h1>
+				<h1 className="text-4xl font-bold mb-8">{localizedTitle}</h1>
 
 				<div className="prose">
-					{Array.isArray(project.body) && (
-						<PortableText value={project.body} />
+					{Array.isArray(localizedBody) && (
+						<PortableText value={localizedBody} />
 					)}
 				</div>
 
@@ -91,7 +77,7 @@ async function ProjectContent({ params }: PageProps) {
 							if (!imageUrl) return null;
 
 							return (
-								<Image key={image._key ?? index} src={imageUrl} alt={`${project.title ?? "Project"} - image ${index + 1}`} width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="h-64 w-full object-cover"/>
+								<Image key={image._key ?? index} src={imageUrl} alt={`${localizedTitle ?? "Project"} - image ${index + 1}`} width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="h-64 w-full object-cover"/>
 							);
 						})}
 					</div>

@@ -15,8 +15,6 @@ import {structure} from './sanity/structure'
 
 // libs
 import {media} from 'sanity-plugin-media'
-import {internationalizedArray} from 'sanity-plugin-internationalized-array'
-import {documentInternationalization} from '@sanity/document-internationalization'
 
 export default defineConfig({
   basePath: '/admin',
@@ -30,22 +28,5 @@ export default defineConfig({
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
 	media(),
-	internationalizedArray({
-		languages: [
-			{id: 'en', title: 'English'},
-			{id: 'fr', title: 'French'},
-		],
-		defaultLanguages: ['en'],
-		fieldTypes: ['string'],
-	}),
-	documentInternationalization({
-	// Required configuration
-		supportedLanguages: [
-			{id: 'en', title: 'English'},
-			{id: 'fr', title: 'French'},
-		],
-		schemaTypes: ['project'],
-	})
-
   ],
 })

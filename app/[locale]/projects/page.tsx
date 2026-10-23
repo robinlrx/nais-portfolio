@@ -10,7 +10,6 @@ type Props = {
 
 const PROJECTS_QUERY = `*[
     _type == "project"
-    && language == $locale
     && defined(slug.current)
 ] {
     _id,
@@ -55,7 +54,7 @@ async function ProjectsContent({ params }: Props) {
                 {projects.map((project) => (
                     <li className="hover:underline" key={project._id}>
                         <Link href={`/${locale}/projects/${project.slug.current}`}>
-                            <h2 className="text-xl font-bold">{project.title}</h2>
+                            <h2 className="text-xl font-bold">{project.title?.[locale] ?? project.title?.[locale === "fr" ? "en" : "fr"]}</h2>
                         </Link>
                     </li>
                 ))}
