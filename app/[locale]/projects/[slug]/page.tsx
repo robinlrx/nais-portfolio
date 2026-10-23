@@ -54,7 +54,7 @@ async function ProjectContent({ params }: PageProps) {
 
 	return (
 		<>
-			<main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
+			<main className="container mx-auto min-h-screen p-8 flex flex-col gap-4">
 				<Link href={`/${locale}/projects`} className="hover:underline">
 					{locale === "fr" ? "← Retour aux projets" : "← Back to projects"}
 				</Link>
@@ -72,7 +72,7 @@ async function ProjectContent({ params }: PageProps) {
 							if (!imageUrl) return null;
 
 							return (
-								<Image key={image._key ?? index} src={imageUrl} alt={`${localizedTitle ?? "Project"} - image ${index + 1}`} width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="h-64 w-full rounded-xl object-cover"/>
+								<Image key={image._key ?? index} src={imageUrl} alt={`${localizedTitle ?? "Project"} - image ${index + 1}`} width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="h-64 w-full object-cover"/>
 							);
 						})}
 					</div>
