@@ -49,7 +49,7 @@ export default function Navbar({ switchPathOverride }: NavbarProps) {
 	const contactLabel = locale === "fr" ? "J'ai un brief à proposer !" : "Have a project in mind?";
 
 	return (
-		<header className="sticky top-0 z-50 w-full px-3 pt-3 sm:px-4 sm:pt-4 font-hago">
+		<header className="absolute top-0 z-999 w-full px-3 pt-3 sm:px-4 sm:pt-4 font-hago">
 			<div className="relative mx-auto flex max-w-7xl items-center justify-between gap-4">
 				<nav className="flex h-16 items-center overflow-hidden rounded-full border border-white bg-black grow">
 					{/* Logo */}
