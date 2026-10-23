@@ -7,7 +7,6 @@ import { client } from "@/sanity/client";
 import Skeleton from "@/app/components/Skeleton";
 import { urlFor } from '@/lib/imageUrl';
 import { Image } from "next-sanity/image";
-import Navbar from "@/app/components/Navbar";
 
 const PROJECT_QUERY = `*[
   _type == "project" &&
@@ -48,26 +47,22 @@ async function ProjectContent({ params }: PageProps) {
 	}
 
 	const otherLocale = locale === "fr" ? "en" : "fr";
-	const switchPathOverride = `/${otherLocale}/projects/${slug}`;
+
 	const localizedTitle = project.title?.[locale] ?? project.title?.[otherLocale];
 	const localizedBody = project.body?.[locale] ?? project.body?.[otherLocale];
-
 	const galleryImages = Array.isArray(project.gallery) ? project.gallery : [];
 
 	return (
 		<>
-			<Navbar switchPathOverride={switchPathOverride} />
 			<main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-				<Link href={`/${locale}`} className="hover:underline">
+				<Link href={`/${locale}/projects`} className="hover:underline">
 					{locale === "fr" ? "← Retour aux projets" : "← Back to projects"}
 				</Link>
 
 				<h1 className="text-4xl font-bold mb-8">{localizedTitle}</h1>
 
 				<div className="prose">
-					{Array.isArray(localizedBody) && (
-						<PortableText value={localizedBody} />
-					)}
+					<PortableText value={localizedBody} />
 				</div>
 
 				{galleryImages.length > 0 && (
@@ -77,7 +72,7 @@ async function ProjectContent({ params }: PageProps) {
 							if (!imageUrl) return null;
 
 							return (
-								<Image key={image._key ?? index} src={imageUrl} alt={`${localizedTitle ?? "Project"} - image ${index + 1}`} width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="h-64 w-full object-cover"/>
+								<Image key={image._key ?? index} src={imageUrl} alt={`${localizedTitle ?? "Project"} - image ${index + 1}`} width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="h-64 w-full rounded-xl object-cover"/>
 							);
 						})}
 					</div>
