@@ -72,38 +72,29 @@ async function ProjectContent({ params }: PageProps) {
 		<>
 			<Navbar switchPathOverride={switchPathOverride} />
 			<main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-4">
-			<Link href={`/${locale}`} className="hover:underline">
-				{locale === "fr" ? "← Retour aux projets" : "← Back to projects"}
-			</Link>
+				<Link href={`/${locale}`} className="hover:underline">
+					{locale === "fr" ? "← Retour aux projets" : "← Back to projects"}
+				</Link>
 
-			<h1 className="text-4xl font-bold mb-8">{project.title}</h1>
+				<h1 className="text-4xl font-bold mb-8">{project.title}</h1>
 
-			<div className="prose">
-				{Array.isArray(project.body) && (
-					<PortableText value={project.body} />
-				)}
-			</div>
-
-			{galleryImages.length > 0 && (
-				<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-					{galleryImages.map((image, index) => {
-						const imageUrl = urlFor(image)?.url();
-
-						if (!imageUrl) return null;
-
-					return (
-						<Image
-							key={image._key ?? index}
-							src={imageUrl}
-							alt={`${project.title ?? "Project"} - image ${index + 1}`}
-							width={800}
-							height={600}
-							sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-							className="h-64 w-full rounded-xl object-cover"
-						/>
-					);
-					})}
+				<div className="prose">
+					{Array.isArray(project.body) && (
+						<PortableText value={project.body} />
+					)}
 				</div>
+
+				{galleryImages.length > 0 && (
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+						{galleryImages.map((image, index) => {
+							const imageUrl = urlFor(image)?.url();
+							if (!imageUrl) return null;
+
+							return (
+								<Image key={image._key ?? index} src={imageUrl} alt={`${project.title ?? "Project"} - image ${index + 1}`} width={800} height={600} sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="h-64 w-full object-cover"/>
+							);
+						})}
+					</div>
 				)}
 			</main>
 		</>

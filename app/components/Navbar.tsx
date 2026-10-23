@@ -14,14 +14,14 @@ type NavbarProps = {
 const navLinks = {
 	en: [
 		{ href: "/showreel", label: "Showreel" },
-		{ href: "/projets", label: "Projects" },
+		{ href: "/projects", label: "Projects" },
 		{ href: "/processus-creatif", label: "Creative process" },
 		{ href: "/actualites", label: "News" },
 		{ href: "/a-propos", label: "About me" },
 	],
 	fr: [
 		{ href: "/showreel", label: "Showreel" },
-		{ href: "/projets", label: "Projets" },
+		{ href: "/projects", label: "Projets" },
 		{ href: "/processus-creatif", label: "Processus créatif" },
 		{ href: "/actualites", label: "Actualités" },
 		{ href: "/a-propos", label: "À propos de moi" },
