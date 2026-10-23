@@ -11,7 +11,9 @@ export default function ConditionalNavbar() {
     // à condition qu'il y ait bien un slug après /projects/
     const isProjectDetailPage = /^\/([a-z]{2}\/)?projects\/.+/.test(pathname);
 
-    if (isProjectDetailPage) {
+	const isAdminPage = pathname.startsWith("/admin");
+
+    if (isProjectDetailPage || isAdminPage) {
         return null;
     }
 
