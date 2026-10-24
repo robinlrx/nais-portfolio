@@ -64,7 +64,7 @@ async function HomeContent({ params }: Props) {
 						<div className="border h-auto" />
 						<div className="font-hago flex flex-col justify-between">
 							{heroTitle.map((title: string, index: number) => (
-								<h1 className="text-2xl" key={index}>{title}</h1>
+								<h1 className="text-3xl" key={index}>{title}</h1>
 							))}
 						</div>
 					</div>
