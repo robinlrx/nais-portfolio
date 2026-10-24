@@ -63,7 +63,7 @@ async function HomeContent({ params }: Props) {
 
 					<div className="relative z-10 flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8">
 						<Image src={"/logo_nais-hoang_cartouche-blanc.png"} alt={"Logo Nais Hoang"} width={200} height={300} />
-						<div className="border w-full md:w-0 md:h-auto" />
+						<div className="border h-auto hidden md:block" />
 						<div className="font-hago flex flex-col justify-between">
 							{heroTitle.map((title: string, index: number) => (
 								<h1 className="text-3xl" key={index}>{title}</h1>
