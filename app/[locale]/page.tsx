@@ -10,6 +10,7 @@ type Props = {
 	params: Promise<{ locale: string }>;
 };
 
+// todo app/const queries.ts
 const HOME_QUERY = `*[
   _type == "homepage"
 ][0] {
@@ -19,6 +20,7 @@ const HOME_QUERY = `*[
 
 const options = { next: { revalidate: 30 } };
 
+// todo app/components/Fallback.tsx
 export default function HomePage({ params }: Props) {
 	return (
 		<Suspense fallback={null}>
@@ -31,12 +33,12 @@ async function HomeContent({ params }: Props) {
 
 	const { locale } = await params;
 
+	// todo app/lib function
 	const homepage = await client.fetch<SanityDocument | null>(
 		HOME_QUERY,
 		{ locale },
 		options
 	);
-	console.log('homepage:', homepage)
 
 	if (!homepage) {
 		notFound();
@@ -61,7 +63,7 @@ async function HomeContent({ params }: Props) {
 
 					<div className="relative z-10 flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8">
 						<Image src={"/logo_nais-hoang_cartouche-blanc.png"} alt={"Logo Nais Hoang"} width={200} height={300} />
-						<div className="border h-auto" />
+						<div className="border w-full md:w-0 md:h-auto" />
 						<div className="font-hago flex flex-col justify-between">
 							{heroTitle.map((title: string, index: number) => (
 								<h1 className="text-3xl" key={index}>{title}</h1>
