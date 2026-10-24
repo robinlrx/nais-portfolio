@@ -1,34 +1,25 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { client } from "@/sanity/client";
 import { type SanityDocument } from "next-sanity";
+import Fallback from "@/app/components/Fallback";
+import { PROJECTSPAGE_QUERY } from "@/constants/queries";
+import { fetchQuery } from "@/lib/fetchQuery";
 
 type Props = {
     params: Promise<{ locale: string }>;
 };
 
-const PROJECTS_QUERY = `*[
-    _type == "project"
-    && defined(slug.current)
-] {
-    _id,
-    title,
-    slug
-}`;
-
-const options = { next: { revalidate: 30 } };
-
 export default function ProjectsPage({ params }: Props) {
-    // ⚠️ Aucun "await params" ici : la page ne lit pas l'URL.
-    // La promesse est passée telle quelle au composant dans Suspense.
-    return (
-        <main className="container mx-auto min-h-screen p-8 border mt-[80px] border-amber-600">
-            <Suspense fallback={<p>Chargement…</p>}>
-                <ProjectsContent params={params} />
-            </Suspense>
-        </main>
-    );
+	// ⚠️ Aucun "await params" ici : la page ne lit pas l'URL.
+	// La promesse est passée telle quelle au composant dans Suspense.
+	return (
+		<main className="container mx-auto min-h-screen p-8 border mt-[80px] border-amber-600">
+			<Fallback fallback={<p>Chargement…</p>}>
+				<ProjectsContent params={params} />
+			</Fallback>
+		</main>
+	);
 }
 
 async function ProjectsContent({ params }: Props) {
@@ -38,11 +29,10 @@ async function ProjectsContent({ params }: Props) {
         notFound();
     }
 
-    const projects = await client.fetch<SanityDocument[]>(
-        PROJECTS_QUERY,
-        { locale },
-        options
-    );
+	const projects = await fetchQuery<SanityDocument[] | []>({
+		query: PROJECTSPAGE_QUERY,
+		params: { locale },
+	});
 
     return (
         <>

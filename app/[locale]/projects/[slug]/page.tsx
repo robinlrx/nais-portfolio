@@ -7,15 +7,9 @@ import { client } from "@/sanity/client";
 import Skeleton from "@/app/components/Skeleton";
 import { urlFor } from '@/lib/imageUrl';
 import { Image } from "next-sanity/image";
-
-const PROJECT_QUERY = `*[
-  _type == "project" &&
-  slug.current == $slug
-][0] {
-  ...
-}`;
-
-const options = { next: { revalidate: 30 } };
+import Fallback from "@/app/components/Fallback";
+import { PROJECT_QUERY } from "@/constants/queries";
+import { fetchQuery } from "@/lib/fetchQuery";
 
 type PageProps = {
 	params: Promise<{ locale: string; slug: string }>;
@@ -23,9 +17,9 @@ type PageProps = {
 
 export default function ProjectPage({ params }: PageProps) {
 	return (
-		<Suspense fallback={<Skeleton />}>
+		<Fallback fallback={<Skeleton />}>
 			<ProjectContent params={params} />
-		</Suspense>
+		</Fallback>
 	);
 }
 
@@ -36,11 +30,10 @@ async function ProjectContent({ params }: PageProps) {
 		notFound();
 	}
 
-	const project = await client.fetch<SanityDocument | null>(
-		PROJECT_QUERY,
-		{ slug, locale },
-		options
-	);
+	const project = await fetchQuery<SanityDocument | null>({
+		query: PROJECT_QUERY,
+		params: { slug, locale },
+	});
 
 	if (!project) {
 		notFound();

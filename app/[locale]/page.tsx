@@ -1,31 +1,20 @@
-import { Suspense } from "react";
-import { client } from "@/sanity/client";
 import { PortableText, type SanityDocument } from "next-sanity";
-import Skeleton from "@/app/components/Skeleton";
 import { notFound } from "next/navigation";
 import Image from "next/image";
+import Fallback from "@/app/components/Fallback";
+import { HOMEPAGE_QUERY } from "@/constants/queries";
+import { fetchQuery } from "@/lib/fetchQuery";
 
 
 type Props = {
 	params: Promise<{ locale: string }>;
 };
 
-// todo app/const queries.ts
-const HOME_QUERY = `*[
-  _type == "homepage"
-][0] {
-  ...,
-  "bgVideo": bgVideo.asset->url
-}`;
-
-const options = { next: { revalidate: 30 } };
-
-// todo app/components/Fallback.tsx
 export default function HomePage({ params }: Props) {
 	return (
-		<Suspense fallback={null}>
+		<Fallback>
 			<HomeContent params={params} />
-		</Suspense>
+		</Fallback>
 	);
 }
 
@@ -33,12 +22,11 @@ async function HomeContent({ params }: Props) {
 
 	const { locale } = await params;
 
-	// todo app/lib function
-	const homepage = await client.fetch<SanityDocument | null>(
-		HOME_QUERY,
-		{ locale },
-		options
-	);
+	const homepage = await fetchQuery<SanityDocument | null>({
+		query: HOMEPAGE_QUERY,
+		params: { locale },
+	});
+	
 
 	if (!homepage) {
 		notFound();
