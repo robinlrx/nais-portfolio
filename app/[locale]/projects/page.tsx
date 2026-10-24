@@ -15,7 +15,7 @@ export default function ProjectsPage({ params }: Props) {
 	// La promesse est passée telle quelle au composant dans Suspense.
 	return (
 		<main className="container mx-auto min-h-screen p-8 border mt-header border-amber-600">
-			<Fallback fallback={<p>Chargement…</p>}>
+			<Fallback>
 				<ProjectsContent params={params} />
 			</Fallback>
 		</main>

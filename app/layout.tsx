@@ -13,7 +13,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 	return (
 		<html lang="en" className={`${openSans.className} ${hago.variable} h-full antialiased`}>
 			<body className="min-h-full flex flex-col">
-				<Suspense fallback={<NavbarFallback />}>
+				<Suspense>
 					<ConditionalNavbar />
 				</Suspense>
 				{children}

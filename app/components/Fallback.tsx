@@ -1,4 +1,4 @@
-import { ReactNode, Suspense } from "react";
+import { ReactNode, Suspense, ViewTransition } from "react";
 
 type Props = {
 	children: ReactNode,
@@ -7,8 +7,14 @@ type Props = {
 
 export default function Fallback({ children, fallback }: Props) {
 	return (
-		<Suspense fallback={fallback}>
-			{children}
+		<Suspense fallback={
+			<ViewTransition exit="slide-down" default="none">
+				{fallback}
+			</ViewTransition>
+		}>
+			<ViewTransition enter="slide-up" default="none">
+				{children}
+			</ViewTransition>
 		</Suspense>
 	);
 }

@@ -1,19 +1,30 @@
 const Skeleton = () => {
 	return (
-		<div role="status" className="space-y-8 animate-pulse md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center animate-skeleton-delayed mt-header">
-			<div className="flex items-center justify-center w-full h-48 bg-neutral-quaternary rounded-base sm:w-96">
-				<svg className="w-11 h-11 text-fg-disabled" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m3 16 5-7 6 6.5m6.5 2.5L16 13l-4.286 6M14 10h.01M4 19h16a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1Z"/></svg>
+		<main className="container mx-auto min-h-screen p-8 flex flex-col gap-4 mt-header animate-pulse">
+			{/* Skeleton pour le lien de retour */}
+			<div className="h-5 w-36 bg-gray-200 rounded" />
+
+			{/* Skeleton pour le titre (h1) */}
+			<div className="h-10 w-3/4 max-w-xl bg-gray-200 rounded mb-8" />
+
+			{/* Skeleton pour le contenu du PortableText (simulant des paragraphes) */}
+			<div className="prose flex flex-col gap-3">
+				<div className="h-4 w-full bg-gray-200 rounded" />
+				<div className="h-4 w-11/12 bg-gray-200 rounded" />
+				<div className="h-4 w-4/5 bg-gray-200 rounded" />
+				<div className="h-4 w-2/3 bg-gray-200 rounded" />
 			</div>
-			<div className="w-full">
-				<div className="h-2.5 bg-neutral-quaternary rounded-full w-48 mb-4"></div>
-				<div className="h-2 bg-neutral-quaternary rounded-full max-w-[480px] mb-2.5"></div>
-				<div className="h-2 bg-neutral-quaternary rounded-full mb-2.5"></div>
-				<div className="h-2 bg-neutral-quaternary rounded-full max-w-[440px] mb-2.5"></div>
-				<div className="h-2 bg-neutral-quaternary rounded-full max-w-[460px] mb-2.5"></div>
-				<div className="h-2 bg-neutral-quaternary rounded-full max-w-[360px]"></div>
+
+			{/* Skeleton pour la grille de la galerie d'images (simulant 6 éléments) */}
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
+				{Array.from({ length: 6 }).map((_, index) => (
+				<div
+					key={index}
+					className="h-64 w-full bg-gray-200 rounded"
+				/>
+				))}
 			</div>
-			<span className="sr-only">Loading...</span>
-		</div>
+		</main>
 	);
 };
 
