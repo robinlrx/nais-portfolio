@@ -54,7 +54,7 @@ async function ProjectContent({ params }: PageProps) {
 
 	return (
 		<>
-			<main className="container mx-auto min-h-screen p-8 flex flex-col gap-4">
+			<main className="container mx-auto min-h-screen p-8 flex flex-col gap-4 mt-[80px]">
 				<Link href={`/${locale}/projects`} className="hover:underline">
 					{locale === "fr" ? "← Retour aux projets" : "← Back to projects"}
 				</Link>

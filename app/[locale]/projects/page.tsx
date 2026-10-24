@@ -23,7 +23,7 @@ export default function ProjectsPage({ params }: Props) {
     // ⚠️ Aucun "await params" ici : la page ne lit pas l'URL.
     // La promesse est passée telle quelle au composant dans Suspense.
     return (
-        <main className="container mx-auto min-h-screen p-8 border border-amber-600">
+        <main className="container mx-auto min-h-screen p-8 border mt-[80px] border-amber-600">
             <Suspense fallback={<p>Chargement…</p>}>
                 <ProjectsContent params={params} />
             </Suspense>
