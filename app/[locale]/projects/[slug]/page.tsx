@@ -1,9 +1,6 @@
-
-import { Suspense } from "react";
 import { PortableText, type SanityDocument } from "next-sanity";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { client } from "@/sanity/client";
 import Skeleton from "@/app/components/Skeleton";
 import { urlFor } from '@/lib/imageUrl';
 import { Image } from "next-sanity/image";
@@ -47,7 +44,7 @@ async function ProjectContent({ params }: PageProps) {
 
 	return (
 		<>
-			<main className="container mx-auto min-h-screen p-8 flex flex-col gap-4 mt-[80px]">
+			<main className="container mx-auto min-h-screen p-8 flex flex-col gap-4 mt-header">
 				<Link href={`/${locale}/projects`} className="hover:underline">
 					{locale === "fr" ? "← Retour aux projets" : "← Back to projects"}
 				</Link>

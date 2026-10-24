@@ -14,7 +14,7 @@ export default function ProjectsPage({ params }: Props) {
 	// ⚠️ Aucun "await params" ici : la page ne lit pas l'URL.
 	// La promesse est passée telle quelle au composant dans Suspense.
 	return (
-		<main className="container mx-auto min-h-screen p-8 border mt-[80px] border-amber-600">
+		<main className="container mx-auto min-h-screen p-8 border mt-header border-amber-600">
 			<Fallback fallback={<p>Chargement…</p>}>
 				<ProjectsContent params={params} />
 			</Fallback>
@@ -23,32 +23,32 @@ export default function ProjectsPage({ params }: Props) {
 }
 
 async function ProjectsContent({ params }: Props) {
-    const { locale } = await params; // ✅ le await est maintenant DANS le Suspense
+	const { locale } = await params; // ✅ le await est maintenant DANS le Suspense
 
-    if (!["en", "fr"].includes(locale)) {
-        notFound();
-    }
+	if (!["en", "fr"].includes(locale)) {
+		notFound();
+	}
 
 	const projects = await fetchQuery<SanityDocument[] | []>({
 		query: PROJECTSPAGE_QUERY,
 		params: { locale },
 	});
 
-    return (
-        <>
-            <h1 className="text-4xl font-bold mb-8 font-hago">
-                {locale === "fr" ? "Projets" : "Projects"}
-            </h1>
+	return (
+		<>
+			<h1 className="text-4xl font-bold mb-8 font-hago">
+				{locale === "fr" ? "Projets" : "Projects"}
+			</h1>
 
-            <ul className="flex flex-col gap-y-4">
-                {projects.map((project) => (
-                    <li className="hover:underline" key={project._id}>
-                        <Link href={`/${locale}/projects/${project.slug.current}`}>
-                            <h2 className="text-xl font-bold">{project.title?.[locale] ?? project.title?.[locale === "fr" ? "en" : "fr"]}</h2>
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-        </>
-    );
+			<ul className="flex flex-col gap-y-4">
+				{projects.map((project) => (
+					<li className="hover:underline" key={project._id}>
+						<Link href={`/${locale}/projects/${project.slug.current}`}>
+							<h2 className="text-xl font-bold">{project.title?.[locale] ?? project.title?.[locale === "fr" ? "en" : "fr"]}</h2>
+						</Link>
+					</li>
+				))}
+			</ul>
+		</>
+	);
 }
