@@ -37,7 +37,11 @@ export const projectType = defineType({
 		defineField({name: 'storyboard', title: 'Storyboard', type: 'localizedString'}),
 		defineField({name: 'client', title: 'Client', type: 'localizedString'}),
 		defineField({title: 'Musique', name: 'music', type: 'localizedString'}),
+		defineField({title: 'Animation', name: 'animation', type: 'localizedString'}),
+		defineField({title: 'Ecole', name: 'school', type: 'localizedString'}),
+		defineField({title: 'Partenaires', name: 'partners', type: 'localizedString'}),
 		defineField({title: 'Description', name: 'body', type: 'localizedBody'}),
+		defineField({title: 'Année', name: 'year', type: 'localizedString'}),
 		defineField({
 			name: 'gallery',
 			title: "Galerie d'images",
