@@ -16,6 +16,10 @@
 	--spacing-header: 80px;
 }
 
+body {
+	background-color: white;
+}
+
 @keyframes fade {
 	from {
 		filter: blur(3px);

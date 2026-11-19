@@ -42,6 +42,7 @@ export const projectType = defineType({
 		defineField({title: 'Paragraphe', name: 'paragraph', type: 'localizedString'}),
 		defineField({title: 'Sous paragraphe', name: 'subparagraph', type: 'localizedString'}),
 		defineField({title: 'Description', name: 'body', type: 'localizedBody'}),
+		defineField({title: "Lien plus d'infos", name: 'infolink', type: 'string'}),
 		defineField({
 			name: 'gallery',
 			title: "Galerie d'images",
