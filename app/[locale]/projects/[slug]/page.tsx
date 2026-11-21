@@ -130,16 +130,18 @@ async function ProjectContent({ params }: PageProps) {
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
 							{galleryImages.map((image, index) => {
 								const imageUrl = urlFor(image)?.url();
-								if (!imageUrl) return null;
+								const dimensions = image.asset?.metadata?.dimensions;
+								if (!imageUrl || !dimensions) return null;
 
 								return (
-									<div className="relative h-64 w-full" key={image._key ?? index}>
+									<div className="relative w-full" key={image._key ?? index}>
 										<Image
 											src={imageUrl}
 											alt={`${localizedTitle ?? "Project"} - image ${index + 1}`}
-											fill
+											width={dimensions.width}
+											height={dimensions.height}
 											sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-											className="object-contain"
+											className="w-full h-auto object-contain"
 										/>
 									</div>
 								);

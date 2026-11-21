@@ -2,7 +2,21 @@ export const PROJECT_QUERY = `*[
   _type == "project" &&
   slug.current == $slug
 ][0] {
-  ...
+  ...,
+  gallery[] {
+    ...,
+    asset-> {
+      _id,
+      url,
+      metadata {
+        dimensions {
+          width,
+          height,
+          aspectRatio
+        }
+      }
+    }
+  }
 }`;
 
 export const PROJECTSPAGE_QUERY = `*[
