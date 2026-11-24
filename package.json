@@ -12,7 +12,6 @@
     "@sanity/document-internationalization": "^6.2.43",
     "@sanity/image-url": "^2.1.1",
     "@sanity/vision": "^5.31.2",
-    "@tailwindcss/typography": "^0.5.20",
     "@videojs/react": "^10.5.0",
     "@videojs/vimeo-video": "^10.5.0",
     "@videojs/youtube-video": "^10.5.0",
@@ -27,6 +26,7 @@
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

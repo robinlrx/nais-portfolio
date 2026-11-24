@@ -33,6 +33,7 @@ export const projectType = defineType({
 		defineField({title: 'Tags', name: 'tags', type: 'localizedTags'}),
 		defineField({title: 'Durée vidéo', name: 'duration', type: 'string'}),
 		defineField({title: 'Année', name: 'year', type: 'string'}),
+
 		defineField({title: 'Ecole', name: 'school', type: 'string'}),
 		defineField({name: 'client', title: 'Client', type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
 		defineField({title: 'Partenaires', name: 'partners', type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
@@ -40,10 +41,13 @@ export const projectType = defineType({
 		defineField({name: 'storyboard', title: 'Storyboard', type: 'array', initialValue: ["Naïs Hoang"], of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
 		defineField({title: 'Animation', name: 'animation', type: 'array', initialValue: ["Naïs Hoang"], of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
 		defineField({title: 'Musique', name: 'music', type: 'string'}),
-		defineField({title: 'Paragraphe', name: 'paragraph', type: 'localizedString'}),
-		defineField({title: 'Sous paragraphe', name: 'subparagraph', type: 'localizedString'}),
-		defineField({title: 'Description', name: 'body', type: 'localizedBody'}),
+
+		defineField({title: 'Contenu 1', name: 'content1', type: 'localizedContent'}),
+		defineField({title: 'Contenu 2', name: 'content2', type: 'localizedContent'}),
+		defineField({title: 'Contenu 3', name: 'content3', type: 'localizedContent'}),
+
 		defineField({title: "Lien plus d'infos", name: 'infolink', type: 'string'}),
+		
 		defineField({
 			name: 'gallery',
 			title: "Galerie d'images",
@@ -53,5 +57,6 @@ export const projectType = defineType({
 				defineArrayMember({type: 'file', options: {accept: 'video/mp4'}}),
 			],
 		}),
+		defineField({title: 'Description', name: 'body', type: 'localizedBody'}),
 	],
 })

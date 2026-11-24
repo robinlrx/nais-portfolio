@@ -42,4 +42,22 @@ const localizedBody = defineType({
 	],
 })
 
-export const projectSupportingTypes = [localizedString, localizedTags, localizedBody]
+const localizedContent = defineType({
+	name: 'localizedContent',
+	title: 'Contenu traduit',
+	type: 'object',
+	fields: [
+		defineField({
+			name: 'heading',
+			title: 'Titre',
+			type: 'localizedString',
+		}),
+		defineField({
+			name: 'body',
+			title: 'Corps',
+			type: 'localizedBody',
+		}),
+	],
+})
+
+export const projectSupportingTypes = [localizedString, localizedTags, localizedBody, localizedContent]
