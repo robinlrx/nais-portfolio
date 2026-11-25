@@ -178,7 +178,7 @@ async function ProjectContent({ params }: PageProps) {
 				</section>
 				
 				{/* making-of optional */}
-				{gallery3.length != 0 &&
+				{galleryMaking.length != 0 &&
 					<section className="bg-[#F6F3EA] w-full">
 						<div className="container mx-auto p-8 flex flex-col gap-4">
 							<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black">
