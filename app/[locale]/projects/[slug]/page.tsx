@@ -9,6 +9,7 @@ import { PROJECT_QUERY } from "@/constants/queries";
 import { fetchQuery } from "@/lib/fetchQuery";
 import TypeTag from "@/app/components/TypeTag";
 import ProjectVideo from "@/app/components/ProjectVideo";
+import ProjectGallery from "@/app/components/ProjectGallery";
 
 type PageProps = {
 	params: Promise<{ locale: string; slug: string }>;
@@ -48,17 +49,22 @@ async function ProjectContent({ params }: PageProps) {
 		heading: project?.content1?.heading?.[locale] ?? project?.content1?.heading?.[otherLocale],
 		body: project?.content1?.body?.[locale] ?? project?.content1?.body?.[otherLocale]
 	}
+	const gallery1 = Array.isArray(project.gallery1) ? project.gallery1 : [];
+
 	const localizedContent2 = {
 		heading: project?.content2?.heading?.[locale] ?? project?.content2?.heading?.[otherLocale],
 		body: project?.content2?.body?.[locale] ?? project?.content2?.body?.[otherLocale]
 	}
+	const gallery2 = Array.isArray(project.gallery2) ? project.gallery2 : [];
+
 	const localizedContent3 = {
 		heading: project?.content3?.heading?.[locale] ?? project?.content3?.heading?.[otherLocale],
 		body: project?.content3?.body?.[locale] ?? project?.content3?.body?.[otherLocale]
 	}
+	const gallery3 = Array.isArray(project.gallery3) ? project.gallery3 : [];
 
-	const localizedBody = project.body?.[locale] ?? project.body?.[otherLocale];
 	const galleryImages = Array.isArray(project.gallery) ? project.gallery : [];
+
 	const creditLabels: Record<string, Record<string, string>> = {
 		client: { fr: "Client", en: "Client" },
 		partners: { fr: "Partenaires", en: "Partners" },
@@ -120,10 +126,11 @@ async function ProjectContent({ params }: PageProps) {
 
 					</div>
 				</section>
-				
+
 				{project.video_url && (
-				<ProjectVideo url={project.video_url} poster={videoPoster} />
+					<ProjectVideo url={project.video_url} poster={videoPoster} />
 				)}
+
 				<section className="container mx-auto p-8 flex flex-col gap-4">
 					<div className="m-auto flex w-[817px] max-w-full flex-col divide-y-2 divide-black overflow-hidden rounded-3xl border-2 border-black bg-transparent md:min-h-[88px] md:w-[980px] md:flex-row md:items-stretch md:divide-x-2 md:divide-y-0 md:rounded-full lg:min-h-[96px] lg:w-[1120px]">
 						{credits.map((item) => (
@@ -158,6 +165,11 @@ async function ProjectContent({ params }: PageProps) {
 						</div>
 					</div>
 
+					<div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3 [&>*:first-child]:col-span-2 md:[&>*:first-child]:col-span-1">
+						<ProjectGallery galleryImages={gallery1} />
+					</div>
+
+
 					{/* content 2 */}
 					{localizedContent2 &&
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black">
@@ -172,6 +184,13 @@ async function ProjectContent({ params }: PageProps) {
 							</div>
 						</div>
 					}
+
+					<div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_calc((100%_-_2.7778rem)/3)] md:[&>*:first-child]:row-span-2 md:[&>*:first-child]:h-full">
+						<ProjectGallery
+							galleryImages={gallery2}
+							imageClassName="w-full h-auto object-cover"
+						/>
+					</div>
 
 					{/* content 3 */}
 					{localizedContent3 &&
@@ -188,28 +207,13 @@ async function ProjectContent({ params }: PageProps) {
 						</div>
 					}
 
-					{galleryImages.length > 0 && (
-						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-							{galleryImages.map((image, index) => {
-								const imageUrl = urlFor(image)?.url();
-								const dimensions = image.asset?.metadata?.dimensions;
-								if (!imageUrl || !dimensions) return null;
+					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+						<ProjectGallery galleryImages={gallery3} />
+					</div>
 
-								return (
-									<div className="relative w-full" key={image._key ?? index}>
-										<Image
-											src={imageUrl}
-											alt={`${localizedTitle ?? "Project"} - image ${index + 1}`}
-											width={dimensions.width}
-											height={dimensions.height}
-											sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-											className="w-full h-auto object-contain"
-										/>
-									</div>
-								);
-							})}
-						</div>
-					)}
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+						<ProjectGallery galleryImages={galleryImages} />
+					</div>
 				</section>
 			</main>
 		</>

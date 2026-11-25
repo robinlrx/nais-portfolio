@@ -1,22 +1,29 @@
+const mediaAssetProjection = `
+  ...,
+  asset-> {
+    _id,
+    url,
+    mimeType,
+    extension,
+    metadata {
+      dimensions {
+        width,
+        height,
+        aspectRatio
+      }
+    }
+  }
+`;
+
 export const PROJECT_QUERY = `*[
   _type == "project" &&
   slug.current == $slug
 ][0] {
   ...,
-  gallery[] {
-    ...,
-    asset-> {
-      _id,
-      url,
-      metadata {
-        dimensions {
-          width,
-          height,
-          aspectRatio
-        }
-      }
-    }
-  }
+  gallery1[] {${mediaAssetProjection}},
+  gallery2[] {${mediaAssetProjection}},
+  gallery3[] {${mediaAssetProjection}},
+  gallery[] {${mediaAssetProjection}},
 }`;
 
 export const PROJECTSPAGE_QUERY = `*[
