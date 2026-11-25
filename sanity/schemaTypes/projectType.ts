@@ -70,6 +70,15 @@ export const projectType = defineType({
 		
 		defineField({title: "Lien plus d'infos", name: 'infolink', type: 'string'}),
 		
+		
+		defineField({title: 'Ecole', name: 'school', type: 'string'}),
+		defineField({name: 'client', title: 'Client', type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
+		defineField({title: 'Partenaires', name: 'partners', type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
+		defineField({title: 'Direction artistique', name: 'artistic_direction', initialValue: ["Naïs Hoang"], type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
+		defineField({name: 'storyboard', title: 'Storyboard', type: 'array', initialValue: ["Naïs Hoang"], of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
+		defineField({title: 'Animation', name: 'animation', type: 'array', initialValue: ["Naïs Hoang"], of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
+		defineField({title: 'Musique', name: 'music', type: 'string'}),
+		
 		defineField({
 			name: 'gallery',
 			title: "Galerie d'images",
@@ -79,15 +88,6 @@ export const projectType = defineType({
 				defineArrayMember({type: 'file', options: {accept: 'video/mp4'}}),
 			],
 		}),
-
-		defineField({title: 'Ecole', name: 'school', type: 'string'}),
-		defineField({name: 'client', title: 'Client', type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
-		defineField({title: 'Partenaires', name: 'partners', type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
-		defineField({title: 'Direction artistique', name: 'artistic_direction', initialValue: ["Naïs Hoang"], type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
-		defineField({name: 'storyboard', title: 'Storyboard', type: 'array', initialValue: ["Naïs Hoang"], of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
-		defineField({title: 'Animation', name: 'animation', type: 'array', initialValue: ["Naïs Hoang"], of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),
-		defineField({title: 'Musique', name: 'music', type: 'string'}),
-
 		defineField({title: 'Description', name: 'body', type: 'localizedBody'}),
 	],
 })
