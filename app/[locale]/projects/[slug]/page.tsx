@@ -130,28 +130,9 @@ async function ProjectContent({ params }: PageProps) {
 				{project.video_url && (
 					<ProjectVideo url={project.video_url} poster={videoPoster} />
 				)}
-
+				
+				{/* main content */}
 				<section className="container mx-auto p-8 flex flex-col gap-4">
-					<div className="m-auto flex w-[817px] max-w-full flex-col divide-y-2 divide-black overflow-hidden rounded-3xl border-2 border-black bg-transparent md:min-h-[88px] md:w-[980px] md:flex-row md:items-stretch md:divide-x-2 md:divide-y-0 md:rounded-full lg:min-h-[96px] lg:w-[1120px]">
-						{credits.map((item) => (
-							<div
-							key={item.label}
-							className="flex flex-1 flex-col items-center justify-center px-4 py-3.5 text-center leading-tight md:px-5 md:py-3"
-							>
-							<p className="font-bold text-black lg:text-lg">{item.label}</p>
-							{Array.isArray(item.value) ? (
-								<div className="flex flex-col text-sm text-black lg:text-base">
-									{item.value.map((val, i) => (
-										<p key={i}>{val}</p>
-									))}
-								</div>
-							) : (
-								<p className="text-sm text-black lg:text-base">{item.value}</p>
-							)}
-							</div>
-						))}
-					</div>
-					
 					{/* content 1 */}
 					<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black">
 
@@ -168,7 +149,6 @@ async function ProjectContent({ params }: PageProps) {
 					<div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3 [&>*:first-child]:col-span-2 md:[&>*:first-child]:col-span-1">
 						<ProjectGallery galleryImages={gallery1} />
 					</div>
-
 
 					{/* content 2 */}
 					{localizedContent2 &&
@@ -211,8 +191,29 @@ async function ProjectContent({ params }: PageProps) {
 						<ProjectGallery galleryImages={gallery3} />
 					</div>
 
+					{/* old */}
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
 						<ProjectGallery galleryImages={galleryImages} />
+					</div>
+				</section>
+
+				{/* credits */}
+				<section className="container mx-auto p-8 flex flex-col gap-4">
+					<div className="border-t-2 border-black pt-6 pb-12">
+						<div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_2fr] lg:gap-8">
+						<h2 className="text-3xl font-hago tracking-tight text-black">
+							{locale === "fr" ? "Crédits" : "Credits"}
+						</h2>
+
+						<dl className="flex flex-col divide-y divide-neutral-200 lg:grid lg:grid-cols-[repeat(3,auto)] lg:justify-between lg:gap-4 lg:divide-y-0">
+							{credits.map(({ label, value }) => (
+								<div key={label} className="flex items-center justify-between gap-4 py-3 lg:block lg:py-0">
+									<dt className="text-base text-neutral-500 lg:text-xs lg:font-bold lg:uppercase lg:tracking-widest lg:text-neutral-600">{label}</dt>
+									<dd className="text-right text-base font-semibold text-black lg:mt-1 lg:text-left lg:text-lg">{value}</dd>
+								</div>
+							))}
+						</dl>
+						</div>
 					</div>
 				</section>
 			</main>
