@@ -38,7 +38,7 @@ export const projectType = defineType({
 		defineField({title: 'Contenu 1', name: 'content1', type: 'localizedContent'}),
 		defineField({
 			name: 'gallery1',
-			title: "Galerie d'images",
+			title: "Galerie d'images 1",
 			type: 'array',
 			of: [
 				defineArrayMember({type: 'image', options: {hotspot: true}}),
@@ -49,7 +49,7 @@ export const projectType = defineType({
 		defineField({title: 'Contenu 2', name: 'content2', type: 'localizedContent'}),
 		defineField({
 			name: 'gallery2',
-			title: "Galerie d'images",
+			title: "Galerie d'images 2",
 			type: 'array',
 			of: [
 				defineArrayMember({type: 'image', options: {hotspot: true}}),
@@ -60,7 +60,7 @@ export const projectType = defineType({
 		defineField({title: 'Contenu 3', name: 'content3', type: 'localizedContent'}),
 		defineField({
 			name: 'gallery3',
-			title: "Galerie d'images",
+			title: "Galerie d'images 3",
 			type: 'array',
 			of: [
 				defineArrayMember({type: 'image', options: {hotspot: true}}),
