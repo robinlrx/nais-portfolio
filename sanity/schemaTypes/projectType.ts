@@ -70,6 +70,16 @@ export const projectType = defineType({
 		
 		defineField({title: "Lien plus d'infos", name: 'infolink', type: 'string'}),
 		
+		defineField({title: 'Making-of', name: 'makingof', type: 'localizedContent'}),
+		defineField({
+			name: 'gallery_making',
+			title: "Galerie d'images making-of",
+			type: 'array',
+			of: [
+				defineArrayMember({type: 'image', options: {hotspot: true}}),
+				defineArrayMember({type: 'file', options: {accept: 'video/mp4'}}),
+			],
+		}),
 		
 		defineField({title: 'Ecole', name: 'school', type: 'string'}),
 		defineField({name: 'client', title: 'Client', type: 'array', of: [defineArrayMember({type: 'string'})], options: {layout: 'tags'}}),

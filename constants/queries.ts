@@ -23,6 +23,7 @@ export const PROJECT_QUERY = `*[
   gallery1[] {${mediaAssetProjection}},
   gallery2[] {${mediaAssetProjection}},
   gallery3[] {${mediaAssetProjection}},
+  gallery_making[] {${mediaAssetProjection}},
   gallery[] {${mediaAssetProjection}},
 }`;
 

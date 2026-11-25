@@ -63,6 +63,13 @@ async function ProjectContent({ params }: PageProps) {
 	}
 	const gallery3 = Array.isArray(project.gallery3) ? project.gallery3 : [];
 
+	const localizedMaking = {
+		heading: project?.makingof?.heading?.[locale] ?? project?.makingof?.heading?.[otherLocale],
+		body: project?.makingof?.body?.[locale] ?? project?.makingof?.body?.[otherLocale]
+	}
+	const galleryMaking = Array.isArray(project.gallery_making) ? project.gallery_making : [];
+
+
 	const galleryImages = Array.isArray(project.gallery) ? project.gallery : [];
 
 	const creditLabels: Record<string, Record<string, string>> = {
@@ -166,9 +173,32 @@ async function ProjectContent({ params }: PageProps) {
 					}
 
 					<div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_calc((100%_-_2.7778rem)/3)] md:[&>*:nth-child(3n+1)]:row-span-2 md:[&>*:nth-child(3n+1)]:h-full">
-					<ProjectGallery galleryImages={gallery2} imageClassName="w-full h-auto object-cover" />
+						<ProjectGallery galleryImages={gallery2} imageClassName="w-full h-auto object-cover" />
 					</div>
+				</section>
+				
+				{/* making-of optional */}
+				{gallery3.length != 0 &&
+					<section className="bg-[#F6F3EA] w-full">
+						<div className="container mx-auto p-8 flex flex-col gap-4">
+							<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black">
+								<div className="lg:p-6 lg:pl-0">
+									<h2 className="text-4xl font-hago">{localizedMaking.heading}</h2>
+								</div>
+								<div className="prose text-black lg:p-6 lg:pl-0">
+									<PortableText value={localizedMaking.body} />
+								</div>
+							</div>
 
+							<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+								<ProjectGallery galleryImages={galleryMaking} />
+							</div>
+						</div>
+					</section>
+				}
+
+				{/* main content 2 */}
+				<section className="container mx-auto p-8 flex flex-col gap-4">
 					{/* content 3 */}
 					{localizedContent3 &&
 						<div className="grid grid-cols-1 lg:grid-cols-2 gap-6 text-black">
@@ -183,10 +213,13 @@ async function ProjectContent({ params }: PageProps) {
 							</div>
 						</div>
 					}
-
-					<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-						<ProjectGallery galleryImages={gallery3} />
-					</div>
+					
+					{gallery3.length != 0 &&
+						<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+							<ProjectGallery galleryImages={gallery3} />
+						</div>
+					}
+					
 
 					{/* old */}
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
