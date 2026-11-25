@@ -146,7 +146,7 @@ async function ProjectContent({ params }: PageProps) {
 						</div>
 					</div>
 
-					<div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3 [&>*:first-child]:col-span-2 md:[&>*:first-child]:col-span-1">
+					<div className="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-3 [&>*:nth-child(3n+1)]:col-span-2 md:[&>*:nth-child(3n+1)]:col-span-1">
 						<ProjectGallery galleryImages={gallery1} />
 					</div>
 
@@ -165,11 +165,8 @@ async function ProjectContent({ params }: PageProps) {
 						</div>
 					}
 
-					<div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_calc((100%_-_2.7778rem)/3)] md:[&>*:first-child]:row-span-2 md:[&>*:first-child]:h-full">
-						<ProjectGallery
-							galleryImages={gallery2}
-							imageClassName="w-full h-auto object-cover"
-						/>
+					<div className="grid grid-cols-1 gap-4 md:grid-cols-[1fr_calc((100%_-_2.7778rem)/3)] md:[&>*:nth-child(3n+1)]:row-span-2 md:[&>*:nth-child(3n+1)]:h-full">
+					<ProjectGallery galleryImages={gallery2} imageClassName="w-full h-auto object-cover" />
 					</div>
 
 					{/* content 3 */}
@@ -201,18 +198,18 @@ async function ProjectContent({ params }: PageProps) {
 				<section className="container mx-auto p-8 flex flex-col gap-4">
 					<div className="border-t-2 border-black pt-6 pb-12">
 						<div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_2fr] lg:gap-8">
-						<h2 className="text-3xl font-hago tracking-tight text-black">
-							{locale === "fr" ? "Crédits" : "Credits"}
-						</h2>
+							<h2 className="text-3xl font-hago tracking-tight text-black">
+								{locale === "fr" ? "Crédits" : "Credits"}
+							</h2>
 
-						<dl className="flex flex-col divide-y divide-neutral-200 lg:grid lg:grid-cols-[repeat(3,auto)] lg:justify-between lg:gap-4 lg:divide-y-0">
-							{credits.map(({ label, value }) => (
-								<div key={label} className="flex items-center justify-between gap-4 py-3 lg:block lg:py-0">
-									<dt className="text-base text-neutral-500 lg:text-xs lg:font-bold lg:uppercase lg:tracking-widest lg:text-neutral-600">{label}</dt>
-									<dd className="text-right text-base font-semibold text-black lg:mt-1 lg:text-left lg:text-lg">{value}</dd>
-								</div>
-							))}
-						</dl>
+							<dl className="flex flex-col divide-y divide-neutral-200 lg:grid lg:grid-cols-[repeat(3,auto)] lg:justify-between lg:gap-4 lg:divide-y-0">
+								{credits.map(({ label, value }) => (
+									<div key={label} className="flex items-center justify-between gap-4 py-3 lg:block lg:py-0">
+										<dt className="text-base text-neutral-500 lg:text-xs lg:font-bold lg:uppercase lg:tracking-widest lg:text-neutral-600">{label}</dt>
+										<dd className="text-right text-base font-semibold text-black lg:mt-1 lg:text-left lg:text-lg">{Array.isArray(value) ? value.join(', ') : value}</dd>
+									</div>
+								))}
+							</dl>
 						</div>
 					</div>
 				</section>
