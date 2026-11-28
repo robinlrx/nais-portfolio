@@ -1,15 +1,15 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { type SanityDocument } from "next-sanity";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Skeleton from "@/app/components/Skeleton";
 import { urlFor } from '@/lib/imageUrl';
-import { Image } from "next-sanity/image";
 import Fallback from "@/app/components/Fallback";
 import { PROJECT_QUERY } from "@/constants/queries";
 import { fetchQuery } from "@/lib/fetchQuery";
 import TypeTag from "@/app/components/TypeTag";
 import ProjectVideo from "@/app/components/ProjectVideo";
 import ProjectGallery from "@/app/components/ProjectGallery";
+import LocalizedBody from "@/app/components/LocalizedBody";
 
 type PageProps = {
 	params: Promise<{ locale: string; slug: string }>;
@@ -149,7 +149,7 @@ async function ProjectContent({ params }: PageProps) {
 
 
 						<div className="prose text-black lg:p-6 lg:pl-0">
-							<PortableText value={localizedContent1.body} />
+							<LocalizedBody value={localizedContent1.body} />
 						</div>
 					</div>
 
@@ -167,7 +167,7 @@ async function ProjectContent({ params }: PageProps) {
 
 
 							<div className="prose text-black lg:p-6 lg:pl-0">
-								<PortableText value={localizedContent2.body} />
+								<LocalizedBody value={localizedContent2.body} />
 							</div>
 						</div>
 					}
@@ -186,7 +186,7 @@ async function ProjectContent({ params }: PageProps) {
 									<h2 className="text-4xl font-hago">{localizedMaking.heading}</h2>
 								</div>
 								<div className="prose text-black lg:p-6 lg:pl-0">
-									<PortableText value={localizedMaking.body} />
+									<LocalizedBody value={localizedMaking.body} />
 								</div>
 							</div>
 
@@ -209,7 +209,7 @@ async function ProjectContent({ params }: PageProps) {
 
 
 							<div className="prose text-black lg:p-6 lg:pl-0">
-								<PortableText value={localizedContent3.body} />
+								<LocalizedBody value={localizedContent3.body} />
 							</div>
 						</div>
 					}

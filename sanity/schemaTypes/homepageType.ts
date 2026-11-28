@@ -14,6 +14,8 @@ export const homePageType = {
 	fields: [
 		defineField({title: 'Hero titre', name: 'heroTitle', type: 'localizedTags'}),
 		defineField({title: 'Vidéo de fond', name: 'bgVideo', type: 'file'}),
-		// Ajoutez ici les champs dont vous avez besoin (bannière, image, etc.)
+
+		defineField({title: 'Intro tags', name: 'intro_tags', type: 'localizedTags'}),
+		defineField({title: 'Intro texte', name: 'intro_text', type: 'localizedBody'}),
 	],
 };

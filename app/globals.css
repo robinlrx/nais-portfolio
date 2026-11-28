@@ -3,13 +3,15 @@
 
 @theme {
 	--color-yellow: #FFB81C;
-	--color-blue: #2B3BF0;
+	--color-blue: #3E4CFD;
 	--color-pink: #F7A8D8;
 	--color-green: #35C48D;
 	--color-orange: #F7821B;
 	--violet: #E9DAF6;
 	--color-ink: #1A1A1A;
 	--color-grey: #E6E6EA;
+	--color-red: #FF5863;
+	--color-fushia: #FE38FF;
 
 	--font-open-sans: var(--font-open-sans);
 	--font-hago: var(--font-hago-local);

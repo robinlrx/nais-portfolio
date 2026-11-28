@@ -1,4 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import BlueDecorator from '../components/BlueDecorator'
 
 const localizedString = defineType({
 	name: 'localizedString',
@@ -37,8 +38,53 @@ const localizedBody = defineType({
 	title: 'Description traduite',
 	type: 'object',
 	fields: [
-		defineField({name: 'fr', title: 'Français', type: 'array', of: [{type: 'block'}]}),
-		defineField({name: 'en', title: 'English', type: 'array', of: [{type: 'block'}]}),
+		defineField({
+		name: 'fr',
+		title: 'Français',
+		type: 'array',
+		of: [
+			{
+			type: 'block',
+			marks: {
+				decorators: [
+				{ title: 'Gras', value: 'strong' },
+				{ title: 'Italique', value: 'em' },
+				{ title: 'Underline', value: 'underline' },
+				{
+					title: 'Texte bleu',
+					value: 'blue',
+					icon: () => '🔵',
+					component: BlueDecorator,
+				},
+				],
+			},
+			},
+		],
+		}),
+
+		defineField({
+		name: 'en',
+		title: 'English',
+		type: 'array',
+		of: [
+			{
+			type: 'block',
+			marks: {
+				decorators: [
+				{ title: 'Bold', value: 'strong' },
+				{ title: 'Italic', value: 'em' },
+				{ title: 'Underline', value: 'underline' },
+				{
+					title: 'Blue text',
+					value: 'blue',
+					icon: () => '🔵',
+					component: BlueDecorator,
+				},
+				],
+			},
+			},
+		],
+		}),
 	],
 })
 

@@ -1,9 +1,11 @@
-import { PortableText, type SanityDocument } from "next-sanity";
+import { type SanityDocument } from "next-sanity";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import NextImage from 'next/image'
 import Fallback from "@/app/components/Fallback";
 import { HOMEPAGE_QUERY } from "@/constants/queries";
 import { fetchQuery } from "@/lib/fetchQuery";
+import LocalizedBody from "@/app/components/LocalizedBody";
+import ColorTag from "@/app/components/ColorTag";
 
 
 type Props = {
@@ -34,6 +36,8 @@ async function HomeContent({ params }: Props) {
 
 	const otherLocale = locale === "fr" ? "en" : "fr";
 	const heroTitle = homepage.heroTitle?.[locale] ?? homepage.heroTitle?.[otherLocale];
+	const introTags = homepage.intro_tags?.[locale] ?? homepage.intro_tags?.[otherLocale];
+	const introText = homepage.intro_text?.[locale] ?? homepage.intro_text?.[otherLocale];
 
 	return (
 		<main className="min-h-screen">
@@ -50,7 +54,7 @@ async function HomeContent({ params }: Props) {
 					<div className="absolute -inset-x-12 inset-y-0 bg-black/40 rounded-3xl blur-2xl z-0" />
 
 					<div className="relative z-10 flex flex-col md:flex-row justify-center items-center md:items-stretch gap-8">
-						<Image src={"/logo_nais-hoang_cartouche-blanc.png"} alt={"Logo Nais Hoang"} width={200} height={300} />
+						<NextImage src={"/logo_nais-hoang_cartouche-blanc.png"} alt={"Logo Nais Hoang"} width={200} height={300} />
 						<div className="border h-auto hidden md:block" />
 						<div className="font-hago flex flex-col justify-between">
 							{heroTitle.map((title: string, index: number) => (
@@ -62,9 +66,18 @@ async function HomeContent({ params }: Props) {
 			</section>
 
 			{/* 2. Section en dessous : Avec le container et le padding */}
-			<div className="container mx-auto p-8">
-				<h2 className="text-2xl font-semibold mb-4">Section suivante</h2>
-				<p>Le contenu de votre site est bien centré et confiné dans le container ici.</p>
+			<div className="container mx-auto p-8 flex flex-col justify-center items-center">
+				<ColorTag color="yellow">
+					<p>{introTags[0]}</p>
+				</ColorTag>
+				<ColorTag color="fushia">
+					<p>{introTags[1]}</p>
+				</ColorTag>
+				<ColorTag color="blue">
+					<NextImage src={"/logo_nais-hoang_blanc.svg"} alt={"Logo Nais Hoang"} width={150} height={200} />
+				</ColorTag>
+
+				<LocalizedBody value={introText} className="max-w-[600px] text-center text-xl"/>
 			</div>
 		</main>
 	);
